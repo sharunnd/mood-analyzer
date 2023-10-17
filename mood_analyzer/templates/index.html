@@ -7,9 +7,16 @@
 </head>
 <body>
     <h1>Mood Analyzer</h1>
-    <form action="/analyze" method="post">
-        <textarea name="text" cols="30" rows="10" required></textarea><br>
-        <input type="submit" value="Submit">
+
+    <form method="POST" action="/">
+        <label for="text">Enter Text:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50"></textarea><br>
+        <input type="submit" value="Analyze">
     </form>
+
+    {% if mood_result %}
+    <h2>Mood Analysis Result:</h2>
+    <p>{{ mood_result }}</p>
+    {% endif %}
 </body>
 </html>
