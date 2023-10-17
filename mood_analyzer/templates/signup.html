@@ -1,38 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .error-message {
+            color: red;
+        }
+
+        button[type="submit"] {
+            
+            padding: 12px;
+            font-size: 18px;
+            background-color: rgb(243, 201, 201);
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            
+        }
+
+        button[type="submit"]:hover {
+            background-color: white;
+            color: rgb(242, 95, 95);
+        }
+
+        p a {
+            text-decoration: none;
+            color: rgb(242, 95, 95);
+        }
+
+        .home-link {
+            color: #6c6b6a;
+            font-size: small;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Sign Up</h1>
-    <form method="POST">
-        {{ form.hidden_tag() }}
-        <div>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
-            {% for error in form.username.errors %}
-            <span style="color: red;">{{ error }}</span><br>
-            {% endfor %}
-        </div>
-        <div>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
-            {% for error in form.password.errors %}
-            <span style="color: red;">{{ error }}</span><br>
-            {% endfor %}
-        </div>
-        <div>
-            {{ form.confirm_password.label }}<br>
-            {{ form.confirm_password(size=32) }}<br>
-            {% for error in form.confirm_password.errors %}
-            <span style="color: red;">{{ error }}</span><br>
-            {% endfor %}
-        </div>
-        <div>
-            {{ form.submit() }}
-        </div>
-    </form>
+    <div class="form-container">
+        <h1>Sign Up</h1>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                
+                {{ form.username(size=32, placeholder="Username") }}<br>
+                {% for error in form.username.errors %}
+                <span class="error-message">{{ error }}</span><br>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                
+                {{ form.password(size=32, placeholder="Password") }}<br>
+                {% for error in form.password.errors %}
+                <span class="error-message">{{ error }}</span><br>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                
+                {{ form.confirm_password(size=32, placeholder="Confirm password") }}<br>
+                {% for error in form.confirm_password.errors %}
+                <span class="error-message">{{ error }}</span><br>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <button type="submit">Signup</button>
+            </div>
+        </form>
+        <p>Already have an account? <a href="/login">Login</a></p>
+        <p><a href="/" class="home-link">Back to Home</a></p>
+    </div>
 </body>
+
 </html>
