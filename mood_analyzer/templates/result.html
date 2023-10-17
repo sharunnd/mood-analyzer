@@ -1,18 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mood Analysis Result</title>
-</head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        text-align: center;
+      }
 
-<body>
+      .container {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin: 50px auto;
+        max-width: 400px;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      a {
+        color: #6c6b6a;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: small;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      h2 {
+        color: rgba(222, 10, 10, 0.692);
+      }
+
+    </style>
+  </head>
+
+  <body>
     <div class="container">
-        <h1>Mood Analysis Result</h1>
-        <p><strong>Analysis Result:</strong> {{ mood_result }}</p>
-        <p><a href="/">Back to Home</a></p>
+      <h1>Mood Analysis Result</h1>
+      <h2>{{ mood_result }}</h2>
+      <p><a href="/">Back to Home</a></p>
     </div>
-</body>
-
+  </body>
 </html>
