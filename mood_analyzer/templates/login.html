@@ -59,13 +59,24 @@
             transition: background-color 0.3s ease;
         }
 
-        input[type="submit"]:hover {
-            background-color: rgb(243, 201, 201);
+        button[type="submit"]:hover {
+            background-color: white;
+            color: rgb(242, 95, 95);
         }
 
         span.error-message {
             color: red;
             margin-bottom: 10px;
+        }
+
+        p a {
+            text-decoration: none;
+            color: rgb(242, 95, 95);
+        }
+
+        .home-link {
+            color: #6c6b6a;
+            font-size: small;
         }
     </style>
 </head>
@@ -93,6 +104,8 @@
                 <button type="submit">Login</button>
             </div>
         </form>
+        <p>Don't have an account? <a href="/signup">Signup</a></p>
+        <p><a href="/" class="home-link">Back to Home</a></p>
     </div>
 </body>
 
