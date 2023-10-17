@@ -8,7 +8,10 @@ load_dotenv()
 
 # Initialize Flask app instance
 template_dir = os.path.abspath('templates')
-app = Flask(__name__, template_folder=template_dir)
+
+# Initialize Flask app instance with static URL path
+app = Flask(__name__, static_url_path='/mood_analyzer/static', template_folder=template_dir)
+
 
 # Configure Flask app with MongoDB URI from environment variables
 app.config['MONGO_URI'] = os.getenv('MONGO_URI')

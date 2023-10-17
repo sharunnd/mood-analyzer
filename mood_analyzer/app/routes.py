@@ -7,14 +7,14 @@ import os
 
 dashboard_bp = Blueprint('dashboard', __name__)
 
+
 @app.route('/', methods=['GET', 'POST'])
 def dashboard():
-    mood_result = None  # Initialize mood_result as None initially
+    mood_result = None
 
     if request.method == 'POST':
-        text = request.form['text']  # Get text from the form submission
+        text = request.form['text']
 
-        # Perform mood analysis using OpenAI API
         try:
             import openai
             openai.api_key = os.getenv('OPENAI_API_KEY')
@@ -22,14 +22,24 @@ def dashboard():
                 engine="text-davinci-003",
                 prompt=f"Analyze the mood of the following text: '{text}' and predict whether the mood of the text is Positive, Negative, or Neutral.",
                 max_tokens=50,
-                temperature =1.2
+                temperature=1.2
             )
             mood_result = response.choices[0].text.strip()
+
+            # Redirect to a new route with the mood analysis result
+            return redirect(url_for('mood_result_page', mood_result=mood_result))
+
         except Exception as e:
             print(f"Error: {e}")
             mood_result = "Error occurred during analysis."
 
     return render_template('index.html', mood_result=mood_result)
+
+
+@app.route('/result')
+def mood_result_page():
+    mood_result = request.args.get('mood_result', 'No result')  # Get mood_result from the URL parameter
+    return render_template('result.html', mood_result=mood_result)
 
 
 @app.route('/signup', methods=['GET', 'POST'])
