@@ -83,7 +83,7 @@ def login():
         existing_user = mongo.db.users.find_one({'username': username})
         if existing_user and bcrypt.checkpw(password.encode('utf-8'), existing_user['password'].encode('utf-8')):
             flash('Logged in successfully!', 'success')
-            return redirect(url_for('dashboard.dashboard'))  # Redirect to the dashboard or another secure page after login
+            return redirect(url_for('dashboard'))  # Redirect to the dashboard or another secure page after login
         else:
             flash('Invalid username or password. Please try again.', 'error')
 
