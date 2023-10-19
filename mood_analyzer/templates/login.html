@@ -80,26 +80,26 @@
         }
     </style>
 </head>
-
 <body>
     <div class="form-container">
         <h1>Login</h1>
         <form method="POST">
             {{ form.hidden_tag() }}
             <div>
-                
-                {{ form.username(size=32,  placeholder="Username") }}<br>
+                {{ form.username(size=32, placeholder="Username") }}<br>
                 {% for error in form.username.errors %}
                 <span class="error-message">{{ error }}</span><br>
                 {% endfor %}
             </div>
             <div>
-                
-                {{ form.password(size=32,  placeholder="Password") }}<br>
+                {{ form.password(size=32, placeholder="Password") }}<br>
                 {% for error in form.password.errors %}
                 <span class="error-message">{{ error }}</span><br>
                 {% endfor %}
             </div>
+            {% if error %}
+            <div class="error-message">{{ error }}</div><br>
+            {% endif %}
             <div>
                 <button type="submit">Login</button>
             </div>
@@ -108,5 +108,4 @@
         <p><a href="/" class="home-link">Back to Home</a></p>
     </div>
 </body>
-
 </html>

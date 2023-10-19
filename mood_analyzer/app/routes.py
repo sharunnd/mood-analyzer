@@ -47,35 +47,61 @@ def mood_result_page():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = SignupForm()
+    error_message = None
 
     if form.validate_on_submit():
-        username = form.username.data
-        password = form.password.data
+        try:
+            username = form.username.data
+            password = form.password.data
 
-        # Check if the username already exists in the database
-        existing_user = mongo.db.users.find_one({'username': username})
-        if existing_user:
-            flash('Username already exists. Please choose a different username.', 'error')
-            return redirect(url_for('signup'))
+            # Check if the username already exists in the database
+            existing_user = mongo.db.users.find_one({'username': username})
+            if existing_user:
+                flash('Username already exists. Please choose a different username.', 'error')
+                return redirect(url_for('signup'))
 
-        # Hash the password before storing it
-        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+            # Hashing the password before storing it
+            hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
-        # Create a new user document with hashed password
-        new_user = {
-            'username': username,
-            'password': hashed_password.decode('utf-8')  # Decode the bytes to store as a string
-        }
-        mongo.db.users.insert_one(new_user)
+            # Create a new user document with hashed password
+            new_user = {
+                'username': username,
+                'password': hashed_password.decode('utf-8')  # Decode the bytes to store as a string
+            }
+            mongo.db.users.insert_one(new_user)
 
-        flash('Account created successfully! You can now log in.', 'success')
-        return redirect(url_for('login'))  # Assuming you have a login route
+            flash('Account created successfully! You can now log in.', 'success')
+            return redirect(url_for('login'))  # Assuming you have a login route
 
-    return render_template('signup.html', form=form)
+        except Exception as e:
+            print(f"Error: {e}")
+            error_message = "Error occurred during signup. Please try again later."
+
+    return render_template('signup.html', form=form, error=error_message)
+
+
+# @app.route('/login', methods=['GET', 'POST'])
+# def login():
+#     form = LoginForm()
+
+#     if form.validate_on_submit():
+#         username = form.username.data
+#         password = form.password.data
+
+#         # Check if the username exists in the database
+#         existing_user = mongo.db.users.find_one({'username': username})
+#         if existing_user and bcrypt.checkpw(password.encode('utf-8'), existing_user['password'].encode('utf-8')):
+#             flash('Logged in successfully!', 'success')
+#             return redirect(url_for('dashboard'))  # Redirect to the dashboard or another secure page after login
+#         else:
+#             flash('Invalid username or password. Please try again.', 'error')
+
+#     return render_template('login.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    error_message = None
 
     if form.validate_on_submit():
         username = form.username.data
@@ -87,6 +113,8 @@ def login():
             flash('Logged in successfully!', 'success')
             return redirect(url_for('dashboard'))  # Redirect to the dashboard or another secure page after login
         else:
-            flash('Invalid username or password. Please try again.', 'error')
+            error_message = 'Invalid username or password. Please try again.'
 
-    return render_template('login.html', form=form)
+    return render_template('login.html', form=form, error=error_message)
+
+
