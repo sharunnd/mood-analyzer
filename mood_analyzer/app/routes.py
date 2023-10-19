@@ -80,24 +80,6 @@ def signup():
     return render_template('signup.html', form=form, error=error_message)
 
 
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     form = LoginForm()
-
-#     if form.validate_on_submit():
-#         username = form.username.data
-#         password = form.password.data
-
-#         # Check if the username exists in the database
-#         existing_user = mongo.db.users.find_one({'username': username})
-#         if existing_user and bcrypt.checkpw(password.encode('utf-8'), existing_user['password'].encode('utf-8')):
-#             flash('Logged in successfully!', 'success')
-#             return redirect(url_for('dashboard'))  # Redirect to the dashboard or another secure page after login
-#         else:
-#             flash('Invalid username or password. Please try again.', 'error')
-
-#     return render_template('login.html', form=form)
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
