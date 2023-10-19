@@ -14,8 +14,9 @@ Mood Analyzer is a web application that allows you to analyze the mood of any te
 - Flask: A lightweight Python web framework.
 - Flask-PyMongo: MongoDB integration for Flask.
 - OpenAI API: Used for text analysis.
-- HTML, CSS, and JavaScript for the frontend.
-- MongoDB ATLAS for storing user data
+- HTML, CSS
+- Python
+- MongoDB Atlas: for storing user data.
 
 ## Setup
 
