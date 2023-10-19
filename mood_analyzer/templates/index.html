@@ -95,6 +95,9 @@
     <!-- Main Content -->
     <div class="container">
       <h2 class="heading">Analyze the mood of any text you provide</h2>
+      {% if error_message %}
+        <div class="error-message">{{ error_message }}</div>
+      {% endif %}
       <form method="POST" action="/">
         <div class="form-group">
           <textarea
