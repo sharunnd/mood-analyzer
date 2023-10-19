@@ -3,14 +3,16 @@ from .forms import SignupForm,LoginForm
 from . import app,mongo
 import bcrypt
 import os
-# OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+
 
 dashboard_bp = Blueprint('dashboard', __name__)
+
 
 
 @app.route('/', methods=['GET', 'POST'])
 def dashboard():
     mood_result = None
+    error_message = None
 
     if request.method == 'POST':
         text = request.form['text']
@@ -31,9 +33,9 @@ def dashboard():
 
         except Exception as e:
             print(f"Error: {e}")
-            mood_result = "Error occurred during analysis."
+            error_message = "Error occurred during analysis. Please try again later."
 
-    return render_template('index.html', mood_result=mood_result)
+    return render_template('index.html', mood_result=mood_result, error_message=error_message)
 
 
 @app.route('/result')
