@@ -54,3 +54,16 @@ Follow these steps to set up and run Mood Analyzer on your local machine:
   Enter text in the provided textarea.
   Click the "Analyze" button.
   The predicted mood of the text will be displayed.
+
+### Home Page
+![Screenshot (479)](https://github.com/sharunnd/mood-analyzer/assets/119393327/c09c92e4-e0fb-40f6-9c27-876415596396)
+
+### Signup Page
+![Screenshot (480)](https://github.com/sharunnd/mood-analyzer/assets/119393327/f382d272-2429-49d2-b192-f1a5689c2039)
+
+### Login Page
+![Screenshot (481)](https://github.com/sharunnd/mood-analyzer/assets/119393327/9e086214-229c-42a9-9640-93a4be5e372f)
+
+### Result Page
+![Screenshot (482)](https://github.com/sharunnd/mood-analyzer/assets/119393327/6e0dfe82-399e-400a-b899-fd6dfc770980)
+
