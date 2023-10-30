@@ -52,6 +52,7 @@ Follow these steps to set up and run Mood Analyzer on your local machine:
    Open a web browser and go to http://localhost:5000
    
 ### Usage
+
   Enter text in the provided textarea.
   Click the "Analyze" button.
   The predicted mood of the text will be displayed.
